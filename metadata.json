@@ -1,0 +1,7 @@
+{
+  "name": "KisanAI - Sateek Kheti",
+  "description": "Smart Precision Farming assistant powered by AI. Crop recommendation, disease detection, and market insights for Indian farmers.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

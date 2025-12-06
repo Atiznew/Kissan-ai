@@ -1,0 +1,83 @@
+
+openapi: 3.0.0
+info:
+  title: KrishiAI Central API
+  description: API for Precision Farming Platform
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local Development
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+  /auth/signup:
+    post:
+      summary: Register a new user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                full_name:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                  enum: [farmer, agronomist]
+      responses:
+        201:
+          description: User created
+  /auth/login:
+    post:
+      summary: Login user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: JWT Token returned
+  /fields:
+    get:
+      summary: Get user fields
+      responses:
+        200:
+          description: List of fields
+    post:
+      summary: Add a new field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                area_acres:
+                  type: number
+                soil_type:
+                  type: string
+      responses:
+        201:
+          description: Field created
